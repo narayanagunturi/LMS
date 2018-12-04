@@ -1,0 +1,20 @@
+<div *ngIf="StudentDetails;then content else other_content"></div>    
+<ng-template #content>
+    <table>
+        <tr>
+          <th>Course</th>
+          <th>Grade</th>
+        </tr>
+        <tr *ngFor="let StudentDetail of StudentDetails">
+          <td>{{ StudentDetail.courseId }}</td>
+          <td>{{StudentDetail.grade }}</td>
+        </tr>
+      </table> 
+  <!-- <ul>
+    <li *ngFor="let StudentDetail of StudentDetails">
+      {{ StudentDetail.courseId }}, {{StudentDetail.grade }}
+    </li>
+  </ul> -->
+</ng-template>
+<ng-template #other_content>No grades were found for given roll number</ng-template>
+
