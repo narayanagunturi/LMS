@@ -12,7 +12,7 @@ var corsOptions = {
 server.use(cors(corsOptions));
 
 
-server.post('/upload', upload);
+server.post('/upload', upload);/* go to upload.js and function upload is called*/
 server.get('/grades/:id', grades)
 server.listen(8000, () => {
     console.log('Server started!');
