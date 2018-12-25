@@ -8,20 +8,17 @@ const url = 'http://localhost:8000/upload';
 @Injectable({
   providedIn: 'root'
 })
-@Injectable()
+// @Injectable()
 export class UploadService {
   constructor(private http: HttpClient) {}
 
-  public upload(file: File, courseId:string, startDate:Date): {[key:string]:Observable<number>} {
+  public  upload(file: File, courseId:string,startDate:Date): {[key:string]:Observable<number>} {
     // this will be the our resulting map
     const status = {};
-      // create a new multipart-form for every file
       const formData: FormData = new FormData();
-      formData.append('courseId', courseId)
-      formData.append('startDate', startDate.toString())
-      console.log(startDate)
+      formData.append('startDate',startDate.toString())
+      formData.append('courseId', courseId);
       formData.append('file', file, file.name);
-      // create a http-post request and pass the form
       const req = new HttpRequest('POST', url, formData, {
         reportProgress: true
       });
@@ -47,7 +44,10 @@ export class UploadService {
       };
     
 
-    // return the map of progress.observables
+    // // return the map of progress.observables
     return status;      
   }
 }
+
+
+

@@ -1,20 +1,31 @@
-<div *ngIf="StudentDetails;then content else other_content"></div>    
+
+
+  <div class="container">
+   <div class="jumbotron">
+    <h1 style="color:yellow"><i><b>your Result</b></i>>> <img src="https://www.iconshock.com/image/Vista/Project_management/results" alt="" align="right" width="25%" height="20%"></h1> 
+  </div>
+
+
+  <div *ngIf="StudentDetails;then content else other_content"></div>    
 <ng-template #content>
-    <table>
+    <table class="table">
+      <thead>
         <tr>
           <th>Course</th>
           <th>Grade</th>
         </tr>
+      </thead>
+      <tbody>
         <tr *ngFor="let StudentDetail of StudentDetails">
           <td>{{ StudentDetail.courseId }}</td>
           <td>{{StudentDetail.grade }}</td>
         </tr>
+      </tbody>
       </table> 
-  <!-- <ul>
-    <li *ngFor="let StudentDetail of StudentDetails">
-      {{ StudentDetail.courseId }}, {{StudentDetail.grade }}
-    </li>
-  </ul> -->
+
 </ng-template>
 <ng-template #other_content>No grades were found for given roll number</ng-template>
+</div>
+
+
 

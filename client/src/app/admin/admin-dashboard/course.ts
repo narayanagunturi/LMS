@@ -1,3 +1,3 @@
 export class Course {
-    constructor(public id:string, public StartDate:Date){}
+    constructor(public StartDate:Date){}
 }

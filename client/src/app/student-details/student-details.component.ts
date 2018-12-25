@@ -29,6 +29,7 @@ export class StudentDetailsComponent implements OnInit {
   getDetails(id: string){
     this.http.get('http://localhost:8000/grades/' + id).subscribe(data => {
       console.log(data);
+      // console.log("prasanna");
       this.StudentDetails = data
       console.log(this.StudentDetails)
   },

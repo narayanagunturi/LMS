@@ -6,8 +6,10 @@ import {HttpClientModule} from '@angular/common/http'
 import {UploadService} from './upload.service'
 import { MaterialModule } from '../material.module';
 import { MatButtonModule, MatDialogModule, MatListModule, MatProgressBarModule } from '@angular/material';
+
 @NgModule({
   declarations: [AdminDashboardComponent],
+  
   imports: [
     CommonModule,
     FormsModule,
@@ -17,6 +19,6 @@ import { MatButtonModule, MatDialogModule, MatListModule, MatProgressBarModule }
     MatListModule, 
     MatProgressBarModule,
     MaterialModule
-  ],
+  ]
 })
 export class AdminModule { }

@@ -1,23 +1,48 @@
-<h1 class="text-center">
+ 
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+ <!-- <h1 class="text-center">
     Submit Grade Sheet
   </h1>
-  <div class="text-center">
+ -->  <div class="container">
+  	 <div class="jumbotron">
+    <h1 style="color:yellow"><i><b>Learning Management System</b></i> <img src="https://cdn2.iconfinder.com/data/icons/outline-ui-3-part-1of-3/100/pack01-25-512.png" alt="" align="right" width="50%" height="20%"></h1> 
+    
+    <p style="color:#FFFAFA"> <b>Upload Grade Sheet</b> </p>
+
+  </div>
+
+  	
+    <!-- enctype allows form to be sent in encrypted form during post method -->
+
     <form enctype="multipart/form-data">
       <div class="form-group">
-        <label for="courseId">Course Id: </label>
-        <input type="text" [disabled] = "uploading || uploadSuccessful" id="courseId" class="form-control" name="courseId" [(ngModel)]="courseModel.id" width="20">
+      <label for="courseId" id="DropdownLabel"> <h5><b>Select Course:  </b></h5></label>
+    <select (change)="selectChangeHandler($event)" [disabled] = "uploading || uploadSuccessful">
+       <option *ngFor="let c of course" [value]="c.Name">{{c.Name}}</option>    
+     </select> 
+     <br>
+     <p><i>Selected :{{courseSelected}}</i></p>
       </div>
+      
+      
       <mat-form-field>
-        <input matInput [disabled] = "uploading || uploadSuccessful" [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="courseModel.StartDate" name="Date">
+        <input matInput [disabled] = "uploading || uploadSuccessful" [matDatepicker]="picker" placeholder="MM/DD/YYYY" [(ngModel)]="CourseDate.StartDate" name="Date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <div class="form-group">
-        <label for="csvInput">Select File: </label>
-        <input type="file" [disabled] = "uploading || uploadSuccessful" id="csvInput" class="form-control" name="csvInput" (change)="fileChange($event)" width="20">
+     
+   <div class="form-group">
+
+        <input type="file" [disabled] = "uploading || uploadSuccessful" id="csvInput" name="csvInput" (change)="fileChange($event)">
       </div>
       <div class="form-group">
-        <button type="button" class="btn btn-success" (click)="uploadCSV()">{{primaryButtonText}}</button>
+        <button type="button" class="btn btn-primary" (click)="uploadCSV()" width="20">{{primaryButtonText}}</button>
       </div>
     </form>
+  
+  	
   </div>
+  
+
+  <!-- class="form-control"  -->

@@ -1,29 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from './course'
+// import {Date} from './date'
+import {Course} from './course';
+
 import { UploadService } from '../upload.service';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+// import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  styleUrls: ['./admin-dashboard.component.css'],
+ 
 })
 export class AdminDashboardComponent implements OnInit {
-  public fileList: Array<File> = []
+  public fileList: Array<File> = [];
   progress;
   canBeClosed = true; 
   primaryButtonText = 'Upload';
-  showCancelButton = true; 
+  // showCancelButton = true; 
+
+  CourseDate = new Course(new Date())
   uploading = false;
   uploadSuccessful = false;
-  courseModel = new Course("CSPP-1", new Date(2017, 1, 1))
-  public isFileThere = false
+  
+  // courseModel = new Course("CSPP-1");/*2 WAY BINDING :Default input field shows CSPP1 ,if we change in backend while submitting it takes input field entered*/
+  public isFileThere = false;
   constructor(public uploadService: UploadService) { }
-
-  fileChange(e){
-    console.log(e.target)
+  
+   fileChange(e){
     this.fileList = e.target.files;
     this.isFileThere = true
   }
+
+  courseSelected:string='CSPP-1';
+     // Date:Date='25-NOV-18';
+  selectChangeHandler(event:any){
+    this.courseSelected = event.target.value;
+  }
+
+  course=[
+      {Name:"CSPP-1"},
+      {Name:"CSPP-2"},
+      {Name:"ADS-1"},
+      {Name:"ADS-2"},
+      {Name:"DBMS"},
+  ]
+  
+
+  ngOnInit() {
+       
+  }
+
+
+
 
   uploadCSV(){
     if (this.uploadSuccessful) {
@@ -31,14 +60,10 @@ export class AdminDashboardComponent implements OnInit {
     }
     else{
       if(this.fileList.length>0){
-        console.log(this.courseModel.StartDate)
         let file: File = this.fileList[0];
-        //var date = this.courseModel.StartDate.getDate().toString()+"/"+(this.courseModel.StartDate.getMonth()).toString()+"/"+this.courseModel.StartDate.getFullYear()
-        this.progress = this.uploadService.upload(file, this.courseModel.id,this.courseModel.StartDate);
-        console.log(this.progress);
-        for (const key in this.progress) {
-          this.progress[key].progress.subscribe(val => console.log(val));
-        }
+        // this.progress = this.uploadService.upload(file, this.courseModel.id);
+          this.progress = this.uploadService.upload(file, this.courseSelected,this.CourseDate.StartDate);
+        console.log("progress variable",this.progress);
         let allProgressObservables = [];
         for (let key in this.progress) {
           allProgressObservables.push(this.progress[key].progress);
@@ -63,7 +88,5 @@ export class AdminDashboardComponent implements OnInit {
     }
 }
 
-  ngOnInit() {
-  }
 
 }

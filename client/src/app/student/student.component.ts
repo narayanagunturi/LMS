@@ -18,6 +18,7 @@ export class StudentComponent implements OnInit {
   }
 
   redirect(){
+    /*note this below is a client side i.e Angular Server */
     this.route.navigateByUrl('/student/'+this.studentModel.id)
   }
 

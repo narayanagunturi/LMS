@@ -4,14 +4,16 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import {FormsModule} from '@angular/forms'
 import {AdminModule} from './admin/admin.module'
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {AdminDashboardComponent} from './admin/admin-dashboard/admin-dashboard.component';
 import { StudentComponent } from './student/student.component';
-import { StudentDetailsComponent } from './student-details/student-details.component'
-import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
+import { StudentDetailsComponent } from './student-details/student-details.component';
 import { MaterialModule } from './material.module';
+
+
 @NgModule({
-  declarations: [AppComponent, StudentComponent, StudentComponent, StudentDetailsComponent],
-  imports: [BrowserModule, FormsModule,AdminModule, BsDatepickerModule.forRoot(),  MaterialModule,RouterModule.forRoot(
+  declarations: [AppComponent, StudentComponent, StudentDetailsComponent],
+  imports: [BrowserModule, FormsModule,AdminModule,MaterialModule, RouterModule.forRoot(
     [
       {
         path:'student/:id', component:StudentDetailsComponent
@@ -22,6 +24,7 @@ import { MaterialModule } from './material.module';
       {
         path:'admin', component:AdminDashboardComponent
       },
+      
 
     ],
     { enableTracing: true } // <-- debugging purposes only
